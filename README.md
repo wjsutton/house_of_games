@@ -23,7 +23,7 @@ Quick Link
 [GitHub]:https://github.com/wjsutton
 [Website]:https://wjsutton.github.io/
 
-### :monocle: About
+### :a: About
 
 This a the working space for a shiny app that recreates a [Richard Osman's House of Games](https://www.bbc.co.uk/programmes/b094mjv0)  style quiz.
 
@@ -53,19 +53,30 @@ This data is drawn from the file: `movie_quotes.csv` for listing out 10 reworded
 
 These tasks can be automated with some data work, e.g. using IMDB to find quotes and similar movies. Tests of using the syn R package shows too many synonyms and often the meaning of the quote is completely lost.
 
-#### :thinking: Round 1: TO DO
+#### Round 1: 
 
-[] Automate finding of popular movie quotes
-[] Automate finding of similar films
-[] Automate rewording of quotes
+- [] Automate finding of popular movie quotes
+- [] Automate finding of similar films
+- [] Automate rewording of quotes
 
-### :thinking: TO DO
+### :thinking: TO DO Lists:
 
-[] Automate Round 1 questions
-[] Find different types of games for future round
-[] Figure out which rounds are achieveable in learnr package/shiny app environment
-[] Restyle UI
+#### Round 1
 
+- [] Automate finding of popular movie quotes
+- [] Automate finding of similar films
+- [] Automate rewording of quotes
 
+#### General
+
+- [] Find different types of games for future round
+- [] Figure out which rounds are achieveable in learnr package/shiny app environment
+- [] Restyle UI
+
+#### Test Other Games
+
+- [] Where is Kazakhstan -> answer to a question is a point on a map, pick a point on a the map
+- [] Answer Smash -> picture from a theme (e.g. tools) and answer to a question smash together to form 1 answer, e.g. picture of a Hammer + "Underwater Disney adventure about this little humanoid creature" = Hammermaid (Hammer + Mermaid)
+- [] Broken Karaoke -> the first letter of each word from the lyrics of a popular song appear on screen in the rythme of the song
 
 
