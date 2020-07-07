@@ -1,8 +1,9 @@
-<h1 style="font-weight:normal" align="center">
+<h1 style="font-weight:normal">
   Will Sutton's House of Games 
 </h1>
 
-<div align="center">
+
+[![Status](https://www.repostatus.org/badges/latest/wip.svg)]() [![GitHub Issues](https://img.shields.io/github/issues/wjsutton/house_of_games.svg)](https://github.com/wjsutton/house_of_games/issues) [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/wjsutton/house_of_games.svg)](https://github.com/wjsutton/house_of_games/pulls) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 Inspired by the BBC TV programme [Richard Osman's House of Games](https://www.bbc.co.uk/programmes/b094mjv0) this a recreation of some of the quiz rounds packaged up in an R shiny app. 
 
@@ -12,7 +13,6 @@ Work in Progress Version of Quiz available here:  [https://wjsutton.shinyapps.io
 
 [Twitter][Twitter] :speech_balloon:&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[LinkedIn][LinkedIn] :necktie:&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[GitHub :octocat:][GitHub]&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[Website][Website] :link:
 
-</div>
 
 <!--
 Quick Link 
