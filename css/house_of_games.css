@@ -1,0 +1,123 @@
+/* 
+red: #E40613
+another red: #AC2622
+light blue: #5AAFCE 
+*/
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+/*  padding: 2em;*/
+  letter-spacing: -0.011em;
+/*  font-family: 'Roboto', sans-serif;*/
+  font-family: 'Inter var', sans-serif;
+  font-size: 18px;
+  color: #ffffff;
+  background: #AC2622;
+}
+
+label.control-label {
+font-size: 20px;
+font-weight: normal;
+}
+
+div.topicsContainer {
+/*  color: #221F18;*/
+  background: #AC2622;
+}
+
+div.topics {
+/*  color: #221F18; */
+/*  background: #5AAFCE;*/
+  padding: 2em;
+}
+
+/* not working */
+div.topic.current {
+  color: #221F18;
+  background: #5AAFCE;
+}
+
+/* not working */
+.resetButton {
+  font-size: 18px;
+}
+
+div.bootbox-body {
+  color: #221F18;
+}
+
+/*
+div.`panel panel-default` {
+  border-color: yellow;
+  borer-width: 5px;
+}
+*/
+div.panel.panel-default {
+  border-color: yellow;
+  border-width: 2px;
+  background: #AC2622;
+  -moz-box-shadow:    inset 0 0 10px #000000;
+  -webkit-box-shadow: inset 0 0 10px #000000;
+  box-shadow:         inset 0 0 10px #000000;
+}
+
+.tutorial-question {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 0px;
+}
+
+.btn.btn-default.action-button.btn-primary.shiny-bound-input {
+  background: #5AAFCE;
+  opacity: 1;
+  font-size: 18px;
+}
+
+.alert-success{
+  border-color: yellow;
+  border-width: 2px;
+  background: #AC2622;
+  color: #FFFFFF;
+}
+
+.alert-danger{
+  border-color: white;
+  border-width: 2px;
+  background: #AC2622;
+  color: #FFFFFF;
+  opacity:0.9;
+}
+
+h2 {
+  font-size: 30px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+svg {
+  fill: #34495e;
+}
+
+div.tooltip {
+  color: white;
+  position: absolute;
+  text-align: left;
+  width: 160px;
+  height: 28px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: rgba(0,0,0,.8);
+  border: 2px solid black;
+  pointer-events: none;
+}
+
+shiny-html-output {
+  color: blue;
+}

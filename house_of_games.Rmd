@@ -1,6 +1,10 @@
 ---
-title: "Will Sutton's House of Games"
-output: learnr::tutorial
+title: Will Sutton's <br><br>HOUSE of GAMES
+output: 
+  learnr::tutorial:
+          progressive: true
+          allow_skip: true
+          css: css/house_of_games.css
 runtime: shiny_prerendered
 ---
 
@@ -10,9 +14,9 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-## Round 1
+## ROUND 1
 
-### Movie Quote Thesaurus
+### Cine-nyms
 
 *Here's a quote from a popular film, we've reworded the quote - can you name the film?*
 ```{r questions, echo=FALSE}
