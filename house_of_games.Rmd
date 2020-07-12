@@ -11,6 +11,28 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
+
+# Reverse words function
+# From: https://www.gastonsanchez.com/r4strings/reversing.html
+reverse_words <- function(string)
+{
+  # split string by blank spaces
+  string_split = strsplit(as.character(string), split = " ")
+  # how many split terms?
+  string_length = length(string_split[[1]])
+  # decide what to do
+  if (string_length == 1) {
+    # one word (do nothing)
+    reversed_string = string_split[[1]]
+  } else {
+    # more than one word (collapse them)
+    reversed_split = string_split[[1]][string_length:1]
+    reversed_string = paste(reversed_split, collapse = " ")
+  }
+  # output
+  return(reversed_string)
+} 
+
 ```
 
 
@@ -19,95 +41,319 @@ knitr::opts_chunk$set(echo = FALSE)
 ### Cine-nyms
 
 *Here's a quote from a popular film, we've reworded the quote - can you name the film?*
-```{r questions, echo=FALSE}
 
-data <- read.csv("movie_quotes.csv",stringsAsFactors = F)
+```{r quiz1}
+movie_quotes <- read.csv("movie_quotes.csv",stringsAsFactors = F)
+
+quiz(caption="",
+  question(paste0(movie_quotes[1,8],' ',movie_quotes[1,3]),
+    answer(movie_quotes[1,5]),
+    answer(movie_quotes[1,6]),
+    answer(movie_quotes[1,2], correct = TRUE),
+    answer(movie_quotes[1,7]),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',movie_quotes[1,1],' ',movie_quotes[1,2],', ',movie_quotes[1,3])
+    ,incorrect = paste0('WRONG! ',movie_quotes[1,1],' ',movie_quotes[1,2],', ',movie_quotes[1,3])
+  ),
+  question(paste0(movie_quotes[2,8],' ',movie_quotes[2,3]),
+    answer(movie_quotes[2,5]),
+    answer(movie_quotes[2,2], correct = TRUE),
+    answer(movie_quotes[2,6]),
+    answer(movie_quotes[2,7]),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',movie_quotes[2,1],' ',movie_quotes[2,2],', ',movie_quotes[2,3])
+    ,incorrect = paste0('WRONG! ',movie_quotes[2,1],' ',movie_quotes[2,2],', ',movie_quotes[2,3])
+  ),
+  question(paste0(movie_quotes[3,8],' ',movie_quotes[3,3]),
+    answer(movie_quotes[3,5]),
+    answer(movie_quotes[3,6]),
+    answer(movie_quotes[3,2], correct = TRUE),
+    answer(movie_quotes[3,7]),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',movie_quotes[3,1],' ',movie_quotes[3,2],', ',movie_quotes[3,3])
+    ,incorrect = paste0('WRONG! ',movie_quotes[3,1],' ',movie_quotes[3,2],', ',movie_quotes[3,3])
+  ),
+  question(paste0(movie_quotes[4,8],' ',movie_quotes[4,3]),
+    answer(movie_quotes[4,5]),
+    answer(movie_quotes[4,6]),
+    answer(movie_quotes[4,7]),
+    answer(movie_quotes[4,2], correct = TRUE),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',movie_quotes[4,1],' ',movie_quotes[4,2],', ',movie_quotes[4,3])
+    ,incorrect = paste0('WRONG! ',movie_quotes[4,1],' ',movie_quotes[4,2],', ',movie_quotes[4,3])
+  ),
+  question(paste0(movie_quotes[5,8],' ',movie_quotes[5,3]),
+    answer(movie_quotes[5,2], correct = TRUE),
+    answer(movie_quotes[5,5]),
+    answer(movie_quotes[5,6]),
+    answer(movie_quotes[5,7]),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',movie_quotes[5,1],' ',movie_quotes[5,2],', ',movie_quotes[5,3])
+    ,incorrect = paste0('WRONG! ',movie_quotes[5,1],' ',movie_quotes[5,2],', ',movie_quotes[5,3])
+  ),
+  question(paste0(movie_quotes[6,8],' ',movie_quotes[6,3]),
+    answer(movie_quotes[6,5]),
+    answer(movie_quotes[6,2], correct = TRUE),
+    answer(movie_quotes[6,6]),
+    answer(movie_quotes[6,7]),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',movie_quotes[6,1],' ',movie_quotes[6,2],', ',movie_quotes[6,3])
+    ,incorrect = paste0('WRONG! ',movie_quotes[6,1],' ',movie_quotes[6,2],', ',movie_quotes[6,3])
+  ),
+  question(paste0(movie_quotes[7,8],' ',movie_quotes[7,3]),
+    answer(movie_quotes[7,5]),
+    answer(movie_quotes[7,6]),
+    answer(movie_quotes[7,2], correct = TRUE),
+    answer(movie_quotes[7,7]),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',movie_quotes[7,1],' ',movie_quotes[7,2],', ',movie_quotes[7,3])
+    ,incorrect = paste0('WRONG! ',movie_quotes[7,1],' ',movie_quotes[7,2],', ',movie_quotes[7,3])
+  ),
+  question(paste0(movie_quotes[8,8],' ',movie_quotes[8,3]),
+    answer(movie_quotes[8,5]),
+    answer(movie_quotes[8,6]),
+    answer(movie_quotes[8,2], correct = TRUE),
+    answer(movie_quotes[8,7]),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',movie_quotes[8,1],' ',movie_quotes[8,2],', ',movie_quotes[8,3])
+    ,incorrect = paste0('WRONG! ',movie_quotes[8,1],' ',movie_quotes[8,2],', ',movie_quotes[8,3])
+  ),
+  question(paste0(movie_quotes[9,8],' ',movie_quotes[9,3]),
+    answer(movie_quotes[9,5]),
+    answer(movie_quotes[9,2], correct = TRUE),
+    answer(movie_quotes[9,6]),
+    answer(movie_quotes[9,7]),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',movie_quotes[9,1],' ',movie_quotes[9,2],', ',movie_quotes[9,3])
+    ,incorrect = paste0('WRONG! ',movie_quotes[9,1],' ',movie_quotes[9,2],', ',movie_quotes[9,3])
+  ),
+  question(paste0(movie_quotes[10,8],' ',movie_quotes[10,3]),
+    answer(movie_quotes[10,2], correct = TRUE),
+    answer(movie_quotes[10,5]),
+    answer(movie_quotes[10,6]),
+    answer(movie_quotes[10,7]),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',movie_quotes[10,1],' ',movie_quotes[10,2],', ',movie_quotes[10,3])
+    ,incorrect = paste0('WRONG! ',movie_quotes[10,1],' ',movie_quotes[10,2],', ',movie_quotes[10,3])
+  )
+)
+```
+
+
+## ROUND 2
+
+### I'm Terrible at Dating
+
+*Here's a event in history, can remember (or guess) when it happened?*
+```{r quiz2}
+dating <- read.csv("terrible_at_dating.csv",stringsAsFactors = F)
+dating$correct_answer <- as.character(dating$correct_answer)
+dating$choice_1 <- as.character(dating$choice_1)
+dating$choice_2 <- as.character(dating$choice_2)
+dating$choice_3 <- as.character(dating$choice_3)
+
+quiz(caption ="",
+  question(dating[1,1],
+    answer(dating[1,5]),
+    answer(dating[1,2], correct = TRUE),
+    answer(dating[1,3]),
+    answer(dating[1,4])
+    ,correct = paste0('CORRECT! ',dating[1,2])
+    ,incorrect = paste0('WRONG! ',dating[1,2])
+  ),
+  question(dating[2,1],
+    answer(dating[2,4]),
+    answer(dating[2,3]),
+    answer(dating[2,2], correct = TRUE),
+    answer(dating[2,5])
+    ,correct = paste0('CORRECT! ',dating[2,2])
+    ,incorrect = paste0('WRONG! ',dating[2,2])
+  ),
+  question(dating[3,1],
+    answer(dating[3,4]),
+    answer(dating[3,3]),
+    answer(dating[3,2], correct = TRUE),
+    answer(dating[3,5])
+    ,correct = paste0('CORRECT! ',dating[3,2])
+    ,incorrect = paste0('WRONG! ',dating[3,2])
+  ),
+  question(dating[4,1],
+    answer(dating[4,3]),
+    answer(dating[4,4]),
+    answer(dating[4,5]),
+    answer(dating[4,2], correct = TRUE)
+    ,correct = paste0('CORRECT! ',dating[4,2])
+    ,incorrect = paste0('WRONG! ',dating[4,2])
+  ),
+  question(dating[5,1],
+    answer(dating[5,2], correct = TRUE),
+    answer(dating[5,3]),
+    answer(dating[5,4]),
+    answer(dating[5,5])
+    ,correct = paste0('CORRECT! ',dating[5,2])
+    ,incorrect = paste0('WRONG! ',dating[5,2])
+  ),
+  question(dating[6,1],
+    answer(dating[6,4]),
+    answer(dating[6,3]),
+    answer(dating[6,2], correct = TRUE),
+    answer(dating[6,5])
+    ,correct = paste0('CORRECT! ',dating[6,2])
+    ,incorrect = paste0('WRONG! ',dating[6,2])
+  ),
+  question(dating[7,1],
+    answer(dating[7,5]),
+    answer(dating[7,2], correct = TRUE),
+    answer(dating[7,4]),
+    answer(dating[7,3])
+    ,correct = paste0('CORRECT! ',dating[7,2])
+    ,incorrect = paste0('WRONG! ',dating[7,2])
+  ),
+  question(dating[8,1],
+    answer(dating[8,4]),
+    answer(dating[8,3]),
+    answer(dating[8,2], correct = TRUE),
+    answer(dating[8,5])
+    ,correct = paste0('CORRECT! ',dating[8,2])
+    ,incorrect = paste0('WRONG! ',dating[8,2])
+  ),
+  question(dating[9,1],
+    answer(dating[9,2], correct = TRUE),
+    answer(dating[9,3]),
+    answer(dating[9,4]),
+    answer(dating[9,5])
+    ,correct = paste0('CORRECT! ',dating[9,2])
+    ,incorrect = paste0('WRONG! ',dating[9,2])
+  ),
+  question(dating[10,1],
+    answer(dating[10,3]),
+    answer(dating[10,2], correct = TRUE),
+    answer(dating[10,4]),
+    answer(dating[10,5])
+    ,correct = paste0('CORRECT! ',dating[10,2])
+    ,incorrect = paste0('WRONG! ',dating[10,2])
+  )
+)
+
+```
+
+## ROUND 3
+
+### Games of House
+
+*Below are a series of general knowledge questions, except they have been provided backwards, can you work out the questions and their answers?*
+
+```{r reverse_prep, echo=FALSE}
+reverse <- read.csv("general_knowledge.csv",stringsAsFactors = F)
+
+# For reverse, reverse questions
+reverse$question_clean <- paste0(tolower(substr(reverse$question,1,1))
+                                 ,substr(reverse$question,2,nchar(reverse$question)-1))
+
+reverse$reversed_questions <- paste0(toupper(substr(sapply(reverse$question_clean,                                                      reverse_words),1,1))
+                                     ,substr(sapply(reverse$question_clean, reverse_words),2,nchar(sapply(reverse$question_clean, reverse_words)))
+                                     ,"?")
+# Reverse answers too
+
+reverse$correct_answer <- unlist(lapply(reverse[,2],reverse_words))
+reverse$choice_1 <- unlist(lapply(reverse[,3],reverse_words))
+reverse$choice_2 <- unlist(lapply(reverse[,4],reverse_words))
+reverse$choice_3 <- unlist(lapply(reverse[,5],reverse_words))
 
 ```
 
 
-
-```{r quiz}
-quiz(
-  question(paste0(data[1,8],' ',data[1,3]),
-    answer(data[1,5]),
-    answer(data[1,6]),
-    answer(data[1,2], correct = TRUE),
-    answer(data[1,7])
-    ,correct = paste0('CORRECT! ',data[1,1],' ',data[1,2],', ',data[1,3])
-    ,incorrect = paste0('WRONG! ',data[1,1],' ',data[1,2],', ',data[1,3])
+```{r quiz3}
+quiz(caption="",
+  question(reverse[1,7],
+    answer(reverse[1,2], correct = TRUE),
+    answer(reverse[1,5]),
+    answer(reverse[1,3]),
+    answer(reverse[1,4]),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',reverse[1,1]," ",reverse_words(reverse[1,2]))
+    ,incorrect = paste0('WRONG! ',reverse[1,1]," ",reverse_words(reverse[1,2]))
   ),
-  question(paste0(data[2,8],' ',data[2,3]),
-    answer(data[2,5]),
-    answer(data[2,2], correct = TRUE),
-    answer(data[2,6]),
-    answer(data[2,7])
-    ,correct = paste0('CORRECT! ',data[2,1],' ',data[2,2],', ',data[2,3])
-    ,incorrect = paste0('WRONG! ',data[2,1],' ',data[2,2],', ',data[2,3])
+  question(reverse[2,7],
+    answer(reverse[2,4]),
+    answer(reverse[2,3]),
+    answer(reverse[2,2], correct = TRUE),
+    answer(reverse[2,5]),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',reverse[2,1]," ",reverse_words(reverse[2,2]))
+    ,incorrect = paste0('WRONG! ',reverse[2,1]," ",reverse_words(reverse[2,2]))
   ),
-  question(paste0(data[3,8],' ',data[3,3]),
-    answer(data[3,5]),
-    answer(data[3,6]),
-    answer(data[3,2], correct = TRUE),
-    answer(data[3,7])
-    ,correct = paste0('CORRECT! ',data[3,1],' ',data[3,2],', ',data[3,3])
-    ,incorrect = paste0('WRONG! ',data[3,1],' ',data[3,2],', ',data[3,3])
+  question(reverse[3,7],
+    answer(reverse[3,4]),
+    answer(reverse[3,3]),
+    answer(reverse[3,5]),
+    answer(reverse[3,2], correct = TRUE),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',reverse[3,1]," ",reverse_words(reverse[3,2]))
+    ,incorrect = paste0('WRONG! ',reverse[3,1]," ",reverse_words(reverse[3,2]))
   ),
-  question(paste0(data[4,8],' ',data[4,3]),
-    answer(data[4,5]),
-    answer(data[4,6]),
-    answer(data[4,7]),
-    answer(data[4,2], correct = TRUE)
-    ,correct = paste0('CORRECT! ',data[4,1],' ',data[4,2],', ',data[4,3])
-    ,incorrect = paste0('WRONG! ',data[4,1],' ',data[4,2],', ',data[4,3])
+  question(reverse[4,7],
+    answer(reverse[4,3]),
+    answer(reverse[4,4]),
+    answer(reverse[4,5]),
+    answer(reverse[4,2], correct = TRUE),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',reverse[4,1]," ",reverse_words(reverse[4,2]))
+    ,incorrect = paste0('WRONG! ',reverse[4,1]," ",reverse_words(reverse[4,2]))
   ),
-  question(paste0(data[5,8],' ',data[5,3]),
-    answer(data[5,2], correct = TRUE),
-    answer(data[5,5]),
-    answer(data[5,6]),
-    answer(data[5,7])
-    ,correct = paste0('CORRECT! ',data[5,1],' ',data[5,2],', ',data[5,3])
-    ,incorrect = paste0('WRONG! ',data[5,1],' ',data[5,2],', ',data[5,3])
+  question(reverse[5,7],
+    answer(reverse[5,2], correct = TRUE),
+    answer(reverse[5,3]),
+    answer(reverse[5,4]),
+    answer(reverse[5,5]),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',reverse[5,1]," ",reverse_words(reverse[5,2]))
+    ,incorrect = paste0('WRONG! ',reverse[5,1]," ",reverse_words(reverse[5,2]))
   ),
-  question(paste0(data[6,8],' ',data[6,3]),
-    answer(data[6,5]),
-    answer(data[6,2], correct = TRUE),
-    answer(data[6,6]),
-    answer(data[6,7])
-    ,correct = paste0('CORRECT! ',data[6,1],' ',data[6,2],', ',data[6,3])
-    ,incorrect = paste0('WRONG! ',data[6,1],' ',data[6,2],', ',data[6,3])
+  question(reverse[6,7],
+    answer(reverse[6,4]),
+    answer(reverse[6,3]),
+    answer(reverse[6,2], correct = TRUE),
+    answer(reverse[6,5]),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',reverse[6,1]," ",reverse_words(reverse[6,2]))
+    ,incorrect = paste0('WRONG! ',reverse[6,1]," ",reverse_words(reverse[6,2]))
   ),
-  question(paste0(data[7,8],' ',data[7,3]),
-    answer(data[7,5]),
-    answer(data[7,6]),
-    answer(data[7,2], correct = TRUE),
-    answer(data[7,7])
-    ,correct = paste0('CORRECT! ',data[7,1],' ',data[7,2],', ',data[7,3])
-    ,incorrect = paste0('WRONG! ',data[7,1],' ',data[7,2],', ',data[7,3])
+  question(reverse[7,7],
+    answer(reverse[7,5]),
+    answer(reverse[7,2], correct = TRUE),
+    answer(reverse[7,4]),
+    answer(reverse[7,3]),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',reverse[7,1]," ",reverse_words(reverse[7,2]))
+    ,incorrect = paste0('WRONG! ',reverse[7,1]," ",reverse_words(reverse[7,2]))
   ),
-  question(paste0(data[8,8],' ',data[8,3]),
-    answer(data[8,5]),
-    answer(data[8,6]),
-    answer(data[8,2], correct = TRUE),
-    answer(data[8,7])
-    ,correct = paste0('CORRECT! ',data[8,1],' ',data[8,2],', ',data[8,3])
-    ,incorrect = paste0('WRONG! ',data[8,1],' ',data[8,2],', ',data[8,3])
+  question(reverse[8,7],
+    answer(reverse[8,4]),
+    answer(reverse[8,3]),
+    answer(reverse[8,2], correct = TRUE),
+    answer(reverse[8,5]),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',reverse[8,1]," ",reverse_words(reverse[8,2]))
+    ,incorrect = paste0('WRONG! ',reverse[8,1]," ",reverse_words(reverse[8,2]))
   ),
-  question(paste0(data[9,8],' ',data[9,3]),
-    answer(data[9,5]),
-    answer(data[9,2], correct = TRUE),
-    answer(data[9,6]),
-    answer(data[9,7])
-    ,correct = paste0('CORRECT! ',data[9,1],' ',data[9,2],', ',data[9,3])
-    ,incorrect = paste0('WRONG! ',data[9,1],' ',data[9,2],', ',data[9,3])
+  question(reverse[9,7],
+    answer(reverse[9,3]),
+    answer(reverse[9,4]),
+    answer(reverse[9,5]),
+    answer(reverse[9,2], correct = TRUE),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',reverse[9,1]," ",reverse_words(reverse[9,2]))
+    ,incorrect = paste0('WRONG! ',reverse[9,1]," ",reverse_words(reverse[9,2]))
   ),
-  question(paste0(data[10,8],' ',data[10,3]),
-    answer(data[10,2], correct = TRUE),
-    answer(data[10,5]),
-    answer(data[10,6]),
-    answer(data[10,7])
-    ,correct = paste0('CORRECT! ',data[10,1],' ',data[10,2],', ',data[10,3])
-    ,incorrect = paste0('WRONG! ',data[10,1],' ',data[10,2],', ',data[10,3])
+  question(reverse[10,7],
+    answer(reverse[10,3]),
+    answer(reverse[10,2], correct = TRUE),
+    answer(reverse[10,4]),
+    answer(reverse[10,5]),
+    random_answer_order = TRUE
+    ,correct = paste0('CORRECT! ',reverse[10,1]," ",reverse_words(reverse[10,2]))
+    ,incorrect = paste0('WRONG! ',reverse[10,1]," ",reverse_words(reverse[10,2]))
   )
 )
 ```
